@@ -9,5 +9,11 @@ zstyle :compinstall filename '$HOME/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
-alias vim=nvim
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+###
+#
+# Load my aliases
+if [ -f ~/.config/.zsh/.aliases ]; then
+  source ~/.config/.zsh/.aliases
+fi
+
