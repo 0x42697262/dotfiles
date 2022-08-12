@@ -17,3 +17,4 @@ if [ -f ~/.config/.zsh/.aliases ]; then
   source ~/.config/.zsh/.aliases
 fi
 
+export PATH="$HOME/.local/bin/:$PATH"

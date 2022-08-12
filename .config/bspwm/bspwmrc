@@ -5,7 +5,7 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 nm-applet &
 $HOME/.config/polybar/launch.sh
 
-#feh --bg-fill $HOME/Pictures/wallpaper2.jpg
+feh --bg-fill $HOME/Pictures/koihata.jpg
 picom --experimental-backends &
 
 bspc monitor -d I II III IV V VI VII VIII IX X
