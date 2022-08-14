@@ -27,5 +27,3 @@ bspc rule -a Screenkey manage=off
 #wmname LG3D &
 bspc rule -a android-studio state=floating border=off follow=on
 
-# Policy Kit (dont use kde, ffs)
-#dex -a /etc/xdg/autostart/polkit-kde-authentication-agent-1.desktop
