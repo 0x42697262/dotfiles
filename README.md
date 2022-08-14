@@ -4,6 +4,7 @@
 |------|------|------|------|------|------|------|
 |[Arch](https://archlinux.org/)|[BSPWM](https://github.com/baskerville/bspwm)|[Polybar](https://github.com/polybar/polybar)|[Picom](https://github.com/Arian8j2/picom)|[Kitty](https://github.com/kovidgoyal/kitty)|[Zsh](https://github.com/zsh-users/zsh)|[Paru](https://aur.archlinux.org/packages/paru)|
 
+The fonts somehow uses a lot of space...
 # Setup (WIP)
 ---
 ## Zsh & Oh-My-Zsh
