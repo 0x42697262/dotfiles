@@ -1,5 +1,0 @@
-# Packages Used
-```sh
-rtkit
-```
-
