@@ -154,3 +154,7 @@ super + x
 # Screenshot (Flameshot)
 super + shift + s
 	flameshot gui
+
+# Power Options
+super + slash; o; f; f
+	poweroff
