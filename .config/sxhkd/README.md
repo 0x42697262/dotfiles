@@ -1,7 +1,7 @@
 # Packages Used
 
 ```sh
-ranger kitty rofi betterlockscreen flameshot
+ranger kitty rofi flameshot
 ```
 
 # INFOS

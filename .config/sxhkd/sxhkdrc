@@ -142,10 +142,6 @@ XF86MonBrightnessDown
 XF86MonBrightnessUp
 	xbacklight -inc 5
 
-# lock screen
-super + x
-	betterlockscreen -l
-
 
 #
 #
