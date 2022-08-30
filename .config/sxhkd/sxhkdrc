@@ -158,3 +158,5 @@ super + shift + s
 # Power Options
 super + slash; o; f; f
 	poweroff
+super + slash; r; e; b; o; o; t
+	reboot
