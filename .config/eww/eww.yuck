@@ -1,0 +1,2 @@
+;;;;; import Window scripts
+(include "eww_windows.yuck")

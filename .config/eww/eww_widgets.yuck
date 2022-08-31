@@ -1,0 +1,7 @@
+; -> WIDGETS FOR EWW <- ;
+
+
+;;;; Big Calendar Widget
+
+(defwidget cal []
+  (calendar :halign "center" :valign "center" :class "cal"))

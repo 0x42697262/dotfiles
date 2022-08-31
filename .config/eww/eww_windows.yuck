@@ -1,0 +1,17 @@
+; -> WINDOWS FOR EWW WIDGETS <- ;
+
+;;;;; IMPORTS
+(include "eww_widgets.yuck")
+
+
+;;;; Big Calendar Window
+
+(defwindow calendar
+  :wm-ignore: false 
+  :windowtype "desktop"
+  :geometry (geometry :x "20px"
+                      :y "415px"
+                      :width "240px"
+                      :height "160px"
+                      :anchor "top left")
+(cal))
