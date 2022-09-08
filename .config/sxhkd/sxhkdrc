@@ -156,3 +156,6 @@ super + slash; o; f; f
 	poweroff
 super + slash; r; e; b; o; o; t
 	reboot
+
+super + slash; h; i; b;
+	systemctl hibernate
