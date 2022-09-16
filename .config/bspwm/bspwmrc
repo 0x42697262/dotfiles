@@ -3,7 +3,8 @@
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 nm-applet &
-$HOME/.config/polybar/launch.sh
+$fcitx5 &
+HOME/.config/polybar/launch.sh
 
 feh --bg-fill $HOME/Pictures/koihata.jpg
 picom --experimental-backends &
