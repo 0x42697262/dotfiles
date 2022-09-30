@@ -160,5 +160,5 @@ super + slash; r; e; b; o; o; t
 super + slash; h; i; b;
 	systemctl hibernate
 
-super + slash; x; k; b; {1, 2}
+super + slash; k; b; {1, 2}
 	setxkbmap {-v us, -v us -variant colemak}
