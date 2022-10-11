@@ -17,18 +17,22 @@ cmd("BufEnter", {
   desc = "Quit AstroNvim if more than one window is open and only sidebar windows are list",
   group = "auto_quit",
   callback = function()
-    local num_wins = #vim.api.nvim_list_wins()
-    local not_sidebars = num_wins
-    local sidebar_fts = { "aerial", "neo-tree" }
-    for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-      if
-        vim.api.nvim_buf_is_loaded(bufnr)
-        and vim.tbl_contains(sidebar_fts, vim.api.nvim_buf_get_option(bufnr, "filetype"))
-      then
-        not_sidebars = not_sidebars - 1
+    local wins = vim.api.nvim_tabpage_list_wins(0)
+    -- Both neo-tree and aerial will auto-quit if there is only a single window left
+    if #wins <= 1 then return end
+    local sidebar_fts = { aerial = true, ["neo-tree"] = true }
+    for _, winid in ipairs(wins) do
+      if vim.api.nvim_win_is_valid(winid) then
+        local bufnr = vim.api.nvim_win_get_buf(winid)
+        -- If any visible windows are not sidebars, early return
+        if not sidebar_fts[vim.api.nvim_buf_get_option(bufnr, "filetype")] then return end
       end
     end
-    if num_wins > 1 and not_sidebars == 0 then vim.cmd "quit" end
+    if #vim.api.nvim_list_tabpages() > 1 then
+      vim.cmd.tabclose()
+    else
+      vim.cmd.qall()
+    end
   end,
 })
 
@@ -98,26 +102,16 @@ if is_available "neo-tree.nvim" then
   })
 end
 
-if is_available "feline.nvim" then
-  augroup("feline_setup", { clear = true })
-  cmd("ColorScheme", {
-    desc = "Reload feline on colorscheme change",
-    group = "feline_setup",
-    callback = function()
-      package.loaded["configs.feline"] = nil
-      require "configs.feline"
-    end,
-  })
-end
-
 augroup("astronvim_highlights", { clear = true })
 cmd({ "VimEnter", "ColorScheme" }, {
   desc = "Load custom highlights from user configuration",
   group = "astronvim_highlights",
   callback = function()
     if vim.g.colors_name then
-      for group, spec in pairs(user_plugin_opts("highlights." .. vim.g.colors_name)) do
-        vim.api.nvim_set_hl(0, group, spec)
+      for _, module in ipairs { "init", vim.g.colors_name } do
+        for group, spec in pairs(user_plugin_opts("highlights." .. module)) do
+          vim.api.nvim_set_hl(0, group, spec)
+        end
       end
     end
   end,
@@ -126,4 +120,4 @@ cmd({ "VimEnter", "ColorScheme" }, {
 create_command("AstroUpdate", function() astronvim.updater.update() end, { desc = "Update AstroNvim" })
 create_command("AstroReload", function() astronvim.updater.reload() end, { desc = "Reload AstroNvim" })
 create_command("AstroVersion", function() astronvim.updater.version() end, { desc = "Check AstroNvim Version" })
-create_command("ToggleHighlightURL", astronvim.toggle_url_match, { desc = "Toggle URL Highlights" })
+create_command("ToggleHighlightURL", function() astronvim.ui.toggle_url_match() end, { desc = "Toggle URL Highlights" })
