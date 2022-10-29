@@ -46,6 +46,7 @@ if is_available "alpha-nvim" then
       callback = function()
         local prev_showtabline = vim.opt.showtabline
         vim.opt.showtabline = 0
+        vim.opt_local.winbar = nil
         cmd("BufUnload", {
           pattern = "<buffer>",
           callback = function() vim.opt.showtabline = prev_showtabline end,
@@ -120,4 +121,5 @@ cmd({ "VimEnter", "ColorScheme" }, {
 create_command("AstroUpdate", function() astronvim.updater.update() end, { desc = "Update AstroNvim" })
 create_command("AstroReload", function() astronvim.updater.reload() end, { desc = "Reload AstroNvim" })
 create_command("AstroVersion", function() astronvim.updater.version() end, { desc = "Check AstroNvim Version" })
+create_command("AstroChangelog", function() astronvim.updater.changelog() end, { desc = "Check AstroNvim Changelog" })
 create_command("ToggleHighlightURL", function() astronvim.ui.toggle_url_match() end, { desc = "Toggle URL Highlights" })

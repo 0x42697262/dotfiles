@@ -18,6 +18,9 @@ super + shift + d
 super + d
 	rofi -show drun -theme Monokai -icon-theme "Tela-circle" -show-icons
 
+alt + Tab
+	rofi -show window -theme Monokai -icon-theme "Tela-circle" -show-icons
+
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd

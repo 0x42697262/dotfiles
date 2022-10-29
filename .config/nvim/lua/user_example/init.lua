@@ -44,16 +44,18 @@ local config = {
       -- set to true or false etc.
       relativenumber = true, -- sets vim.opt.relativenumber
       number = true, -- sets vim.opt.number
-      spell = true, -- sets vim.opt.spell
+      spell = false, -- sets vim.opt.spell
       signcolumn = "auto", -- sets vim.opt.signcolumn to auto
       wrap = false, -- sets vim.opt.wrap
     },
     g = {
       mapleader = " ", -- sets vim.g.mapleader
+      autoformat_enabled = true, -- enable or disable auto formatting at start (lsp.formatting.format_on_save must be enabled)
       cmp_enabled = true, -- enable completion at start
       autopairs_enabled = true, -- enable autopairs at start
       diagnostics_enabled = true, -- enable diagnostics at start
       status_diagnostics_enabled = true, -- enable diagnostics in statusline
+      icons_enabled = true, -- disable icons in the UI (disable if no nerd font is available, requires :PackerSync after changing)
     },
   },
   -- If you need more control, you can use the function()...end notation
@@ -106,6 +108,7 @@ local config = {
       aerial = true,
       beacon = false,
       bufferline = true,
+      cmp = true,
       dashboard = true,
       highlighturl = true,
       hop = false,
@@ -118,6 +121,7 @@ local config = {
       rainbow = true,
       symbols_outline = false,
       telescope = true,
+      treesitter = true,
       vimwiki = false,
       ["which-key"] = true,
     },
@@ -136,10 +140,20 @@ local config = {
       -- "pyright"
     },
     formatting = {
-      format_on_save = true, -- enable or disable auto formatting on save
-      disabled = { -- disable formatting capabilities for the listed clients
+      -- control auto formatting on save
+      format_on_save = {
+        enabled = true, -- enable or disable format on save globally
+        allow_filetypes = { -- enable format on save for specified filetypes only
+          -- "go",
+        },
+        ignore_filetypes = { -- disable format on save for specified filetypes
+          -- "python",
+        },
+      },
+      disabled = { -- disable formatting capabilities for the listed language servers
         -- "sumneko_lua",
       },
+      timeout_ms = 1000, -- default format timeout
       -- filter = function(client) -- fully override the default formatting function
       --   return true
       -- end
@@ -226,7 +240,7 @@ local config = {
     },
     -- All other entries override the require("<key>").setup({...}) call for default plugins
     ["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
-      -- config variable is the default configuration table for the setup functino call
+      -- config variable is the default configuration table for the setup function call
       -- local null_ls = require "null-ls"
 
       -- Check supported formatters and linters
