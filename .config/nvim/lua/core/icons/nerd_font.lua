@@ -7,7 +7,7 @@ return {
   DapBreakpointRejected = "",
   DapLogPoint = ".>",
   DapStopped = "",
-  DefaultFile = "",
+  DefaultFile = "",
   Diagnostic = "裂",
   DiagnosticError = "",
   DiagnosticHint = "",
@@ -37,5 +37,7 @@ return {
   MacroRecording = "",
   NeovimClose = "",
   Paste = "",
+  Search = "",
+  Selected = "❯",
   Spellcheck = "暈",
 }
