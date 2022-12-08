@@ -8,9 +8,7 @@
     - [x] cpu
     - [x] temperature
     - [x] battery
-    - [ ] eth
-    - [ ] date
-    - [ ] powermenu
+    - [x] date
 
 # Fonts
 ```sh
@@ -18,8 +16,12 @@ paru -S nerd-fonts-complete
 ```
 
 # Colors
+```sh
+icon_settings_color                        = #bde3ce              
+icon_stats_color                           = #ffbac5
+icon_info_color                            = #fed792
 
-to be configured
+```
 
 # Bar
 ## taskbar
