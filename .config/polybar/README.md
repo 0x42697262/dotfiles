@@ -20,8 +20,22 @@ paru -S nerd-fonts-complete
 icon_settings_color                        = #bde3ce              
 icon_stats_color                           = #ffbac5
 icon_info_color                            = #fed792
-
 ```
+
+## Color Theme
+```sh
+navajo_white                               = #FFDEB0
+medium_aquamarine                          = #65EAA9
+police_blue                                = #345F66
+cherry_blossom_pink                        = #FDB6C4
+sasquatch_socks                            = #FB4380
+rose_red                                   = #C22555
+medium_orchid                              = #BB5DF3
+cadmium_violet                             = #85328E
+eerie_black                                = #1F1327
+```
+https://coolors.co/p/Juvwc1skNco9ogIgayLL
+![Birby Theme](https://cdn.discordapp.com/attachments/961318007924215818/1050415358068129873/Birby_Theme.png)
 
 # Bar
 ## taskbar
