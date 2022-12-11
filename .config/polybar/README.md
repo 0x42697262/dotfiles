@@ -29,7 +29,7 @@ icon_info_color                            = #fed792
 ```
 modules-left = bspwm 
 modules-center = title
-modules-right = wlan date memory cpu temperature battery pulseaudio backlight
+modules-right = pulseaudio backlight memory cpu temperature battery date 
 ```
 Need these guys for the virtual desktops and window title.
 
