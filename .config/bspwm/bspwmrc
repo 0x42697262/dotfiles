@@ -7,8 +7,9 @@ $HOME/.config/polybar/launch.sh
 feh --bg-fill $HOME/Pictures/koihata.jpg
 picom &
 fcitx5 &
+ksnip &
 
-bspc monitor -d I II III IV V VI VII VIII IX X XI XII XIII XIV XV XVI XVII XVIII XIX XX
+bspc monitor -d I II III IV V VI VII VIII IX X XI XII XIII XIV XV XVI XVII XVIII XIX XX XXI
 
 
 bspc config border_width        3 
@@ -23,6 +24,7 @@ bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
+bspc rule -a ksnip desktop='^21' follow=on
 
 #wmname LG3D &
 bspc rule -a android-studio state=floating border=off follow=on
