@@ -1,8 +1,9 @@
 lastupdatecheck: 0
 recentrepos:
 - /home/birb
-- /tmp/ceboom_api
+- /home/birb/www/ceboom_api
 - /home/birb/Stuffs/BirbBox
+- /home/birb/Github/dict_mach1
 - /home/birb/AUR/krulyuno-system-configs
 startuppopupversion: 5
 customcommandshistory:

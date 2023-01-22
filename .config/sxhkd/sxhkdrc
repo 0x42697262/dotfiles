@@ -150,9 +150,15 @@ XF86MonBrightnessUp
 #
 # Rice edits
 
-# Screenshot (Flameshot)
+# Screenshot (KSnip)
 super + shift + s
-	flameshot gui
+	ksnip --rectarea
+
+super + Print
+	ksnip --current
+
+Print
+	ksnip --active
 
 # Power Options
 super + slash; o; f; f
