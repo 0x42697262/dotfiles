@@ -13,7 +13,7 @@
           "Settings": [
             {
               "Property": "EMAWeight",
-              "Value": 0.5
+              "Value": 0.375
             }
           ],
           "Enable": true
