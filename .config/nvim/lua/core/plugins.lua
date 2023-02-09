@@ -34,7 +34,7 @@ local astro_plugins = {
 
   -- Notification Enhancer
   ["rcarriga/nvim-notify"] = {
-    opt = true,
+    module = "notify",
     setup = function() astronvim.load_plugin_with_func("nvim-notify", vim, "notify") end,
     config = function() require "configs.notify" end,
   },
@@ -67,7 +67,8 @@ local astro_plugins = {
   },
 
   -- Bufferline
-  ["akinsho/bufferline.nvim"] = {
+  ["akinsho/bufferline.nvim"] = { -- TODO v3: remove this plugin
+    disable = vim.g.heirline_bufferline,
     module = "bufferline",
     event = "UIEnter",
     config = function() require "configs.bufferline" end,
@@ -176,6 +177,20 @@ local astro_plugins = {
     config = function() require "configs.null-ls" end,
   },
 
+  -- Debugger
+  ["mfussenegger/nvim-dap"] = {
+    disable = vim.fn.has "win32" == 1,
+    module = "dap",
+    config = function() require "configs.dap" end,
+  },
+
+  -- Debugger UI
+  ["rcarriga/nvim-dap-ui"] = {
+    disable = vim.fn.has "win32" == 1,
+    after = "nvim-dap",
+    config = function() require "configs.dapui" end,
+  },
+
   -- Package Manager
   ["williamboman/mason.nvim"] = {
     module = "mason",
@@ -190,7 +205,7 @@ local astro_plugins = {
     },
     config = function()
       require "configs.mason"
-      vim.tbl_map(function(plugin) pcall(require, plugin) end, { "lspconfig", "null-ls" })
+      vim.tbl_map(function(plugin) pcall(require, plugin) end, { "lspconfig", "null-ls", "dap" })
     end,
   },
 
@@ -202,6 +217,13 @@ local astro_plugins = {
 
   -- null-ls manager
   ["jayp0521/mason-null-ls.nvim"] = { after = "null-ls.nvim", config = function() require "configs.mason-null-ls" end },
+
+  -- dap manager
+  ["jayp0521/mason-nvim-dap.nvim"] = {
+    disable = vim.fn.has "win32" == 1,
+    after = "nvim-dap",
+    config = function() require "configs.mason-nvim-dap" end,
+  },
 
   -- LSP symbols
   ["stevearc/aerial.nvim"] = {
@@ -244,7 +266,13 @@ local astro_plugins = {
   -- Color highlighting
   ["NvChad/nvim-colorizer.lua"] = {
     opt = true,
-    setup = function() table.insert(astronvim.file_plugins, "nvim-colorizer.lua") end,
+    setup = function()
+      astronvim.lazy_load_commands(
+        "nvim-colorizer.lua",
+        { "ColorizerToggle", "ColorizerAttachToBuffer", "ColorizerDetachFromBuffer", "ColorizerReloadAllBuffers" }
+      )
+      table.insert(astronvim.file_plugins, "nvim-colorizer.lua")
+    end,
     config = function() require "configs.colorizer" end,
   },
 
@@ -254,7 +282,7 @@ local astro_plugins = {
   -- Terminal
   ["akinsho/toggleterm.nvim"] = {
     module = "toggleterm",
-    setup = function() astronvim.lazy_load_commands("toggleterm.nvim", "ToggleTerm") end,
+    setup = function() astronvim.lazy_load_commands("toggleterm.nvim", { "ToggleTerm", "TermExec" }) end,
     config = function() require "configs.toggleterm" end,
   },
 
@@ -296,7 +324,10 @@ local astro_plugins = {
 if astronvim.updater.snapshot then
   for plugin, options in pairs(astro_plugins) do
     local pin = astronvim.updater.snapshot[plugin:match "/([^/]*)$"]
-    options.commit = pin and pin.commit or options.commit
+    if pin and pin.commit then
+      options.commit = pin.commit
+      options.tag = nil
+    end
   end
 end
 
@@ -312,8 +343,11 @@ if status_ok then
           for mason_plugin, commands in pairs { -- lazy load mason plugin commands with Mason
             ["jayp0521/mason-null-ls.nvim"] = { "NullLsInstall", "NullLsUninstall" },
             ["williamboman/mason-lspconfig.nvim"] = { "LspInstall", "LspUninstall" },
+            ["jayp0521/mason-nvim-dap.nvim"] = { "DapInstall", "DapUninstall" },
           } do
-            if plugins[mason_plugin] then vim.list_extend(plugin.cmd, commands) end
+            if plugins[mason_plugin] and not plugins[mason_plugin].disable then
+              vim.list_extend(plugin.cmd, commands)
+            end
           end
         end
         use(plugin)
