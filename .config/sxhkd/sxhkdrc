@@ -162,10 +162,10 @@ XF86MonBrightnessUp
 super + shift + s
 	ksnip --rectarea
 
-super + Print
+Print
 	ksnip --current
 
-Print
+super + Print
 	ksnip --active
 
 # Power Options
