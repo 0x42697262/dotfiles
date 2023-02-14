@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# ps -e | grep picom > /dev/null
+pidof picom
+if [ $? -eq 0 ]; then
+  pkill picom
+else
+  picom &
+fi
