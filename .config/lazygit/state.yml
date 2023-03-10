@@ -1,11 +1,13 @@
 lastupdatecheck: 0
 recentrepos:
-- /home/birb/Stuffs/BirbBox
 - /home/birb
+- /home/birb/Github/ctrl-alt-elite
+- /home/birb/Stuffs/BirbBox
 - /home/birb/www/ceboom_api
 - /home/birb/Github/dict_mach1
 - /home/birb/AUR/krulyuno-system-configs
 startuppopupversion: 5
 customcommandshistory:
 - ""
+- '020 Studies: Grayscale (image processing)'
 hidecommandlog: false

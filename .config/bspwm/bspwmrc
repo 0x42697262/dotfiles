@@ -1,13 +1,48 @@
-#! /bin/sh
+#!/bin/sh
 
+####
+# CONFIG
+#
+#
+
+
+
+DIR_PICTURES=$HOME/Pictures/
+
+WALLPAPER_DESKTOP1="koihata.jpg"
+WALLPAPER_DESKTOP2="desktop_wallpaper_2.jpg"
+
+POLYBAR_DIR=$HOME/.config/polybar/
+POLYBAR1="launch.sh"
+
+
+
+###
 
 pgrep -x sxhkd > /dev/null || sxhkd &
-nm-applet &
-$HOME/.config/polybar/launch.sh
-feh --bg-fill $HOME/Pictures/koihata.jpg
-picom &
-fcitx5 &
-ksnip &
+
+# Run Polybar
+$POLYBAR_DIR$POLYBAR1
+
+# Set Background
+feh --bg-fill $DIR_PICTURES$WALLPAPER_DESKTOP1
+
+
+function run_applets() {
+  # NetworkManager
+  nm-applet &
+  
+  # Picom
+  picom &
+  
+  # Fcitx5 (keyboard languages)
+  fcitx5 &
+  
+  # KSnip (screenshot) 
+  ksnip &
+
+}
+
 
 bspc monitor -d I II III IV V VI VII VIII IX X XI XII XIII XIV XV XVI XVII XVIII XIX XX XXI
 
@@ -19,8 +54,8 @@ bspc config split_ratio          0.52
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
-bspc rule -a Gimp desktop='^8' state=floating follow=on
-#bspc rule -a firefox desktop='^5'
+# bspc rule -a Gimp desktop='^8' state=floating follow=on
+# bspc rule -a firefox desktop='^5'
 bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
@@ -29,3 +64,4 @@ bspc rule -a ksnip desktop='^21'
 wmname LG3D &
 bspc rule -a android-studio state=floating border=off follow=on
 
+run_applets
