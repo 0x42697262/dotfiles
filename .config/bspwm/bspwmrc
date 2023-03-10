@@ -1,4 +1,4 @@
-#!/bin/sh
+#! /bin/sh
 
 ####
 # CONFIG
@@ -7,14 +7,16 @@
 
 
 
-DIR_PICTURES=$HOME/Pictures/
+_PICTURES=$HOME/Pictures/
 
-WALLPAPER_DESKTOP1="koihata.jpg"
-WALLPAPER_DESKTOP2="desktop_wallpaper_2.jpg"
+_WALLPAPER_DESKTOP1="koihata.jpg"
+_WALLPAPER_DESKTOP2="desktop_wallpaper_2.jpg"
 
-POLYBAR_DIR=$HOME/.config/polybar/
-POLYBAR1="launch.sh"
+_POLYBAR=$HOME/.config/polybar/
+_POLYBAR1="launch.sh"
 
+INTERNAL_MONITOR="eDP-1"
+EXTERNAL_MONITOR="HDMI-1"
 
 
 ###
@@ -22,10 +24,10 @@ POLYBAR1="launch.sh"
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 # Run Polybar
-$POLYBAR_DIR$POLYBAR1
+$_POLYBAR$_POLYBAR1
 
 # Set Background
-feh --bg-fill $DIR_PICTURES$WALLPAPER_DESKTOP1
+feh --bg-fill $_PICTURES$_WALLPAPER_DESKTOP1 --bg-fill $_PICTURES$_WALLPAPER_DESKTOP2
 
 
 function run_applets() {
@@ -45,6 +47,7 @@ function run_applets() {
 
 
 bspc monitor -d I II III IV V VI VII VIII IX X XI XII XIII XIV XV XVI XVII XVIII XIX XX XXI
+# bspc monitor $EXTERNAL_MONITOR -d I II III
 
 
 bspc config border_width        3 
