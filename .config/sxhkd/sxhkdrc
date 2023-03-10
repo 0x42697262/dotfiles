@@ -18,6 +18,10 @@ super + shift + d
 super + d
 	rofi -show drun -theme Monokai -icon-theme "Tela-circle" -show-icons
 
+# program launcher (nvidia)
+super + alt + d
+	prime-run rofi -show drun -theme Monokai -icon-theme "Tela-circle" -show-icons
+
 alt + Tab
 	rofi -show window -theme Monokai -icon-theme "Tela-circle" -show-icons
 
