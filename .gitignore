@@ -1,0 +1,6 @@
+.git-credentials
+.zsh_history
+.cfg
+.histfile
+.ssh
+__pycache__/
