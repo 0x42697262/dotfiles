@@ -190,6 +190,9 @@ super + backslash; h; i; b;
 super + backslash; k; b; {1, 2}
 	setxkbmap {-v us, -v us -variant colemak}
 
+super + backslash; c
+	rofi -show calc -modi calc -no-show-match -no-sort
+
 # Show help
 super + slash
 	~/.config/sxhkd/sxhkd-help
