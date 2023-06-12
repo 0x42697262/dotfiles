@@ -4,25 +4,49 @@
 #                                                                                #
 ##################################################################################
 
+# focus the next/previous window in the current desktop
+super + {_,shift + }q
+	bspc node -f {next,prev}.local.!hidden.window
+
 # program launcher (Apps)
-super + d
-	rofi -show drun -theme Monokai -icon-theme "Tela-circle" -show-icons
+super + {_, shift + }d
+	{ 																						\
+		pkill rofi || ~/.config/rofi/bin/launcher, 	\
+		rofi -show run -theme Monokai 							\
+	}
+
+
+	# rofi -show drun -theme Monokai -icon-theme "Tela-circle" -show-icons
 
 # Open TUI file manager
-quper + e
-	kitty ranger
+super + {_, shift +, shift + ctrl + }e
+	{ 									\
+		kitty ranger, 		\
+		pcmanfm, 					\
+		krusader 					\
+	}
 
 # swap the current node and the biggest window
 super + g
 	bspc node -s biggest.window
+
+# hide / unhide 
+super + {_,shift +}h
+	{ 																					\
+		bspc node -g hidden, 											\ 
+		bspc node any.hidden.local -g hidden=off 	\
+	}
 
 # alternate between the tiled and monocle layout
 super + m
 	bspc desktop -l next
 
 # Rotate current desktop
-super + r; {q,r,w}
+super + r; {q,r,w,}
 	bspc node @/ --rotate {270,180,90}
+
+super + shift + r; {a, r, d, s}
+	xrandr -o {left, normal, right, inverted}
 
 # send the newest marked node to the newest preselected node
 super + y
@@ -36,14 +60,6 @@ super + y
 #                               ALPHABETICAL SHIFT                               #
 #                                                                                #
 ##################################################################################
-
-# Open GUI file manager
-super + shift + e
-	pcmanfm
-
-# program launcher
-super + shift + d
-	rofi -show run -theme Monokai
 
 # Screenshot (KSnip)
 super + shift + s
@@ -204,9 +220,6 @@ super + {_,shift + }{j,l,k,semicolon}
 super + {p,b,comma,period}
 	bspc node -f @{parent,brother,first,second}
 
-# focus the next/previous window in the current desktop
-super + {_,shift + }c
-	bspc node -f {next,prev}.local.!hidden.window
 
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
@@ -279,4 +292,8 @@ super + slash
 
 
 
+
+super + {_,shift +}F1
+	{ bspc node -t floating && bspc node -g sticky=on 	&&	bspc node -l above,	bspc node -t tiled 		&& bspc node -g sticky=off 	&&	bspc node -l normal }
+	# {kitty, bspc rule -a \* -o state=floating sticky=on layer=above rectangle=720x360+600+26 && kitty}
 
