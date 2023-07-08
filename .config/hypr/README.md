@@ -1,5 +1,5 @@
 # Required packages
 
 ```
-pcmanfm krusader kitty ranger
+pcmanfm krusader kitty ranger qalculate-gtk wofi
 ```
